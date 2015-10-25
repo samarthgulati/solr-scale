@@ -18,112 +18,183 @@
 
 <body>
     <script src="three.min.js"></script>
-    <script src="pathcontrols.js"></script>
+    <script src="TrackballControls.js"></script>
     <script>
     var scene = new THREE.Scene();
     var width = window.innerWidth;
     var height = window.innerHeight;
-    var near = 0.1;
+    var fov = 45;
+    var near = 0.001;
     var far = 100000;
-    var camera = new THREE.OrthographicCamera(width / -1, width / 1, height / 1, height / -1, near, far);
+    var camera = new THREE.PerspectiveCamera(fov, width / height, near, far);
+    /*new THREE.OrthographicCamera(width / -0.01, width / 0.01, height / 0.01, height / -0.01, near, far);*/
 
     camera.position.z = 15000;
 
-    var rSun = 696342 / 10000;
-    var rMercury = 2439.7 / 10;
-    var rVenus = 6051.8 / 10;
-    var rEarth = 6371 / 10;
-    var rMars = 3389.5 / 10;
-    var rJupiter = 69911 / 10;
-    var rSaturn = 58232 / 10;
-    var rUranus = 25362 / 10;
-    var rNeptune = 24622 / 10;
+    var controls = new THREE.TrackballControls(camera);
 
+    controls.rotateSpeed = 1;
+    controls.zoomSpeed = 1.2;
+    controls.panSpeed = 0.8;
+
+    controls.noZoom = false;
+    controls.noPan = false;
+
+    controls.staticMoving = true;
+    controls.dynamicDampingFactor = 0.3;
+
+    controls.keys = [65, 83, 68];
+
+    controls.addEventListener('change', render);
+
+    var planets = [{
+        name: "Mercury",
+        majorAxis: "115818100",
+        minorAxis: "57909050",
+        offset: "69816900",
+        tilt: "",
+        angle : 285.55,
+        radius: "2439.7",
+        color: 0xefefef,
+        texture: "img/mercurymap.jpg",
+        timePeriod: "0.240846"
+    }, {
+        name: "Venus",
+        majorAxis: "216416000",
+        minorAxis: "108208000",
+        offset: "108939000",
+        tilt: "",
+        angle : 94.13,
+        radius: "6051.8",
+        color: 0xff6600,
+        texture: "img/venusmap.jpg",
+        timePeriod: "0.615198"
+    }, {
+        name: "Earth",
+        majorAxis: "299025000",
+        minorAxis: "149598261",
+        offset: "151930000",
+        tilt: "",
+        angle : 100.46,
+        radius: "6371",
+        color: 0x3333ff,
+        texture: "img/earthmap1k_clouds.jpg",
+        timePeriod: "1.000017421"
+    }, {
+        name: "Mars",
+        majorAxis: "455900000",
+        minorAxis: "227939100",
+        offset: "249200000",
+        tilt: "",
+        angle : 155.60,
+        radius: "3389.5",
+        color: 0xff1100,
+        texture: "img/mars_1k_color.jpg",
+        timePeriod: "1.88"
+    }, {
+        name: "Jupiter",
+        majorAxis: "1557094400",
+        minorAxis: "778547200",
+        offset: "816520800",
+        tilt: "",
+        angle : 104.92,
+        radius: "69911",
+        color: 0xff6633,
+        texture: "img/jupitermap.jpg",
+        timePeriod: "11.8618"
+    }, {
+        name: "Saturn",
+        majorAxis: "2866898739",
+        minorAxis: "1433449370",
+        offset: "1513325783",
+        tilt: "",
+        angle : 226.71,
+        radius: "58232",
+        color: 0xffbb66,
+        texture: "img/saturnmap.jpg",
+        timePeriod: "29.4571"
+    }, {
+        name: "Uranus",
+        majorAxis: "5741342800",
+        minorAxis: "2870671400",
+        offset: "3006224700",
+        tilt: "",
+        angle : 11.93,
+        radius: "25362",
+        color: 0x55aaff,
+        texture: "img/uranusmap.jpg",
+        timePeriod: "84.016846"
+    }, {
+        name: "Neptune",
+        majorAxis: "8997085300",
+        minorAxis: "4498542600",
+        offset: "4537580900",
+        tilt: "",
+        angle : 334.90,
+        radius: "24622",
+        color: 0xbbaaff,
+        texture: "img/neptunemap.jpg",
+        timePeriod: "164.8"
+    }];
+
+    var rSun = 696342 / 10000;
 
     var gSun = new THREE.SphereGeometry(rSun, 50, 50);
-    var gMercury = new THREE.SphereGeometry(rMercury, 50, 50);
-    var gVenus = new THREE.SphereGeometry(rVenus, 50, 50);
-    var gEarth = new THREE.SphereGeometry(rEarth, 50, 50);
-    var gMars = new THREE.SphereGeometry(rMars, 50, 50);
-    var gJupiter = new THREE.SphereGeometry(rJupiter, 50, 50);
-    var gSaturn = new THREE.SphereGeometry(rSaturn, 50, 50);
-    var gUranus = new THREE.SphereGeometry(rUranus, 50, 50);
-    var gNeptune = new THREE.SphereGeometry(rNeptune, 50, 50);
 
-    var mSun = new THREE.MeshBasicMaterial({
+    var mSun = new THREE.MeshBasicMaterial();
+    mSun.map = THREE.ImageUtils.loadTexture('img/sunmap.jpg');
+    /*new THREE.MeshBasicMaterial({
         color: 0xffff00
-    });
-    var mMercury = new THREE.MeshBasicMaterial({
-        color: 0xefefef
-    });
-    var mVenus = new THREE.MeshBasicMaterial({
-        color: 0xff6600
-    });
-    var mEarth = new THREE.MeshBasicMaterial({
-        color: 0x3333ff
-    });
-    var mMars = new THREE.MeshBasicMaterial({
-        color: 0xff1100
-    });
-    var mJupiter = new THREE.MeshBasicMaterial({
-        color: 0xff6633
-    });
-    var mSaturn = new THREE.MeshBasicMaterial({
-        color: 0xffbb66
-    });
-    var mUranus = new THREE.MeshBasicMaterial({
-        color: 0x55aaff
-    });
-    var mNeptune = new THREE.MeshBasicMaterial({
-        color: 0xbbaaff
-    });
+    });*/
 
     var Sun = new THREE.Mesh(gSun, mSun);
-    var Mercury = new THREE.Mesh(gMercury, mMercury);
-    var Venus = new THREE.Mesh(gVenus, mVenus);
-    var Earth = new THREE.Mesh(gEarth, mEarth);
-    var Mars = new THREE.Mesh(gMars, mMars);
-    var Jupiter = new THREE.Mesh(gJupiter, mJupiter);
-    var Saturn = new THREE.Mesh(gSaturn, mSaturn);
-    var Uranus = new THREE.Mesh(gUranus, mUranus);
-    var Neptune = new THREE.Mesh(gNeptune, mNeptune);
-
     scene.add(Sun);
-    scene.add(Mercury);
-    scene.add(Venus);
-    scene.add(Earth);
-    scene.add(Mars);
-    scene.add(Jupiter);
-    scene.add(Saturn);
-    scene.add(Uranus);
-    scene.add(Neptune);
 
-    var xMercury = 115818100 / 10000;
-    var xVenus = 216416000 / 10000;
-    var xEarth = 299025000 / 10000;
-    var xMars = 455900000 / 10000;
-    var xJupiter = 1557094400 / 10000;
-    var xSaturn = 2866898739 / 10000;
-    var xUranus = 5741342800 / 10000;
-    var xNeptune = 8997085300 / 10000;
 
-    var yMercury = 57909050 / 10000;
-    var yVenus = 108208000 / 10000;
-    var yEarth = 149598261 / 10000;
-    var yMars = 227939100 / 10000;
-    var yJupiter = 778547200 / 10000;
-    var ySaturn = 1433449370 / 10000;
-    var yUranus = 2870671400 / 10000;
-    var yNeptune = 4498542600 / 10000;
+    var getPlanetPosition = function(idx, t) {
+        var position = {};
+        position.x = ((planets[idx].majorAxis / 10000) * Math.cos(t / planets[idx].timePeriod)) + (planets[idx].offset / 10000);
+        position.y = (planets[idx].minorAxis / 10000) * Math.sin(t / planets[idx].timePeriod) + 0;
+        return position;
+    };
 
-    var tMercury = 0.240846*10;
-    var tVenus = 0.615198*10;
-    var tEarth = 1.000017421*10;
-    var tMars = 1.88*10;
-    var tJupiter = 11.8618*10;
-    var tSaturn = 29.4571*10;
-    var tUranus = 84.016846*10;
-    var tNeptune = 164.8*10;
+    var addPlanet = function(p) {
+        var quaternion = new THREE.Quaternion();
+        quaternion.setFromAxisAngle(new THREE.Vector3(1, 1, 1), Math.PI / 2);
+        var pGeom = new THREE.SphereGeometry(p.radius / 10, 32, 32);
+        var pMat = new THREE.MeshBasicMaterial();
+        pMat.map = THREE.ImageUtils.loadTexture(p.texture);
+        /*new THREE.MeshBasicMaterial({
+            color: p.color
+        });*/
+
+        var planet = new THREE.Mesh(pGeom, pMat);
+        planet.name = p.name;
+        scene.add(planet);
+
+        var curve = new THREE.EllipseCurve(
+            p.offset / 10000, 0, // ax, aY
+            p.majorAxis / 10000, p.minorAxis / 10000, // xRadius, yRadius
+            0, 2 * Math.PI, // aStartAngle, aEndAngle
+            false, // aClockwise
+            0 // aRotation 
+        );
+        var path = new THREE.Path(curve.getPoints(1000));
+        var pathGeom = path.createPointsGeometry(1000);
+        var pathMat = new THREE.LineBasicMaterial({
+            color: 0xefefef
+        });
+
+        // Create the final Object3d to add to the scene
+        var ellipse = new THREE.Line(pathGeom, pathMat);
+        scene.add(ellipse);
+    };
+
+
+
+    for (var i in planets) {
+        addPlanet(planets[i]);
+    }
 
 
     var t = 0;
@@ -131,54 +202,34 @@
     var zoomIn = false;
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
+    render();
+    animate();
 
     function render() {
-        requestAnimationFrame(render);
+
+        //requestAnimationFrame(render);
         t += 0.02;
 
-
-        if (camera.left <= -240011) {
-            zoomIn = true;
+        for (var j in scene.children) {
+            for (var k in planets) {
+                if (scene.children[j].name === planets[k].name) {
+                    var position = {};
+                    position = getPlanetPosition(k, t);
+                    scene.children[j].position.x = position.x;
+                    scene.children[j].position.y = position.y;
+                    break;
+                }
+            }
         }
-
-        if (camera.left >= -1280) {
-            zoomIn = false;
-        }
-
-        if (zoomIn) {
-            camera.left /= 1.001;
-            camera.right /= 1.001;
-            camera.top /= 1.001;
-            camera.bottom /= 1.001;
-            camera.updateProjectionMatrix();
-        } else {
-            camera.left *= 1.001;
-            camera.right *= 1.001;
-            camera.top *= 1.001;
-            camera.bottom *= 1.001;
-            camera.updateProjectionMatrix();
-        }
-
-        Mercury.position.x = xMercury * Math.cos(t / tMercury) + 0;
-        Mercury.position.y = yMercury * Math.sin(t / tMercury) + 0;
-        Venus.position.x = xVenus * Math.cos(t / tVenus) + 0;
-        Venus.position.y = yVenus * Math.sin(t / tVenus) + 0;
-        Earth.position.x = xEarth * Math.cos(t / tEarth) + 0;
-        Earth.position.y = yEarth * Math.sin(t / tEarth) + 0;
-        Mars.position.x = xMars * Math.cos(t / tMars) + 0;
-        Mars.position.y = yMars * Math.sin(t / tMars) + 0;
-        Jupiter.position.x = xJupiter * Math.cos(t / tJupiter) + 0;
-        Jupiter.position.y = yJupiter * Math.sin(t / tJupiter) + 0;
-        Saturn.position.x = xSaturn * Math.cos(t / tSaturn) + 0;
-        Saturn.position.y = ySaturn * Math.sin(t / tSaturn) + 0;
-        Uranus.position.x = xUranus * Math.cos(t / tUranus) + 0;
-        Uranus.position.y = yUranus * Math.sin(t / tUranus) + 0;
-        Neptune.position.x = xNeptune * Math.cos(t / tNeptune) + 0;
-        Neptune.position.y = yNeptune * Math.sin(t / tNeptune) + 0;
         renderer.render(scene, camera);
+    }
+
+    function animate() {
+
+        requestAnimationFrame(animate);
+        controls.update();
 
     }
-    render();
     </script>
 </body>
 
