@@ -7,18 +7,86 @@
     <style>
     body {
         margin: 0;
+        font-family: "Trebuchet MS";
+        overflow: hidden;
     }
+    
     .solr {
         width: 100vw;
         height: 100vh;
     }
+    
+    div.tooltip {
+        position: absolute;
+        text-align: center;
+        padding: 5px;
+        font: 1.4rem monospace;
+        background: lightgray;
+        border: 0;
+        border-radius: 2px;
+        pointer-events: none;
+        cursor: default;
+    }
+    
+    .subtitles {
+        width: 100vw;
+        height: 4rem;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    footer {
+        width: 100vw;
+        height: 4rem;
+        position: fixed;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        flex-direction: row;
+        color: white;
+    }
+    
+    .controls__slider {
+        color: white;
+    }
+    
+    .switch > div {
+        height: 1rem;
+        display: inline-block;
+    }
+
+    .range {
+        margin: 0 auto;
+    }
     </style>
+    <link rel="stylesheet" href="switch.css">
 </head>
 
 <body>
+    <div class="subtitles">
+    </div>
     <div class="solr">
         <svg id="solr" width="100%" height="100%" viewBox="0 0 2000 700" preserveAspectRatio="xMaxYMax"></svg>
     </div>
+
+    <footer>
+        <!-- <div class="switch">
+            <span>Equidistant</span>
+            <div>
+                <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                <label for="cmn-toggle-1"></label>
+            </div>
+        </div>-->
+        <!-- <div class="switch">
+            <span>Scale up</span>
+            <div>
+                <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                <label for="cmn-toggle-2"></label>
+            </div>
+        </div>  -->
+        <input class="range" type="range" min="0" max="200" value="0" id="range">
+        
+    </footer>
     <script src="d3.v3.js" type="text/javascript" charset="utf-8"></script>
     <script src="solr.js" type="text/javascript" charset="utf-8"></script>
 </body>
