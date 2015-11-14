@@ -4,6 +4,7 @@
 <head>
     <meta charset=utf-8>
     <title>Solar System to Scale</title>
+<<<<<<< HEAD
     <style>
     body {
         margin: 0;
@@ -21,6 +22,54 @@
     </div>
     <script src="d3.v3.js" type="text/javascript" charset="utf-8"></script>
     <script src="solr.js" type="text/javascript" charset="utf-8"></script>
+=======
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/switch.css">
+</head>
+
+<body>
+    <aside class="info">
+        <div class="script" id="script"></div>
+        <form class="info-ctrl">
+            <div class="explore-btn">
+                <span>Explore</span>
+                <div>
+                    <input id="explore-toggle" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="explore-toggle"></label>
+                </div>
+            </div>
+            <input class="prev" type="button" value="< Prev" id="prev">
+            <input class="reset" type="button" value="Reset" id="reset">
+            <input class="next" type="button" value="Next >" id="next">
+        </form>
+    </aside>
+    <div class="solr">
+        <svg id="solr" width="100%" height="100%" preserveAspectRatio="xMaxYMax"></svg>
+    </div>
+    <aside class="control-panel">
+        <div class="switch">
+            <span>Explore</span>
+            <div>
+                <input id="explore-toggle" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                <label for="explore-toggle"></label>
+            </div>
+        </div>
+        <input class="range" type="range" min="0" max="200" value="0" id="range">
+        <div class="states">
+            <input type="button" value="1" id="toScale">
+            <input type="button" value="2" id="equidistant">
+            <input type="button" value="3" id="size">
+            <input type="button" value="4" id="swap">
+            <input type="button" value="5" id="map">
+        </div>
+    </aside>
+    <script src="js/d3.v3.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/data.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/states.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/init.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/solr.js" type="text/javascript" charset="utf-8"></script>
+>>>>>>> master
 </body>
 
 </html>

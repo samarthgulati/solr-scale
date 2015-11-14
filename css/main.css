@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    font-family: "Trebuchet MS";
+    overflow: hidden;
+}
+
+.solr {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 5px;
+    font: 1.4rem monospace;
+    background: #eee;
+    border: 0;
+    border-radius: 2px;
+    pointer-events: none;
+    cursor: default;
+    z-index: 10;
+}
+
+.info {
+    width: 20rem;
+    height: 100vh;
+    overflow: scroll;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    z-index: 2;
+}
+
+.script {
+    margin: 0.5rem 1rem;
+}
+
+.info-ctrl {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    z-index: 3;
+    width: 20rem;
+}
+
+.prev,
+.reset {
+    float: left;
+    margin: 0.5rem 1rem;
+}
+
+.prev {
+    display: none;
+}
+
+.next {
+    float: right;
+    margin: 0.5rem 1rem;
+}
+
+.control-panel {
+    width: 4.5rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+    z-index: 2;
+    visibility: hidden;
+}
+
+.switch > div {
+    height: 1rem;
+    display: inline-block;
+}
+
+.range {
+    width: 50vh;
+    transform: rotate(90deg) translate(50vh, -17vh);
+    right: 0;
+    top: 0;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+}
+
+.states {
+    right: 1vw;
+    top: 26vh;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-between;
+}
+
+.map-bgd {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 0.5;
+    /* Set z-index to 0 as it will be on a layer below the contact form */
+}
+
+.explore-btn {
+    margin-left: 45%;
+}
