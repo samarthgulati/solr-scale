@@ -107,7 +107,7 @@ var toScale = {
         title: "This, is our Solar System",
         intro: "At first sight, it might not look like it, but if it is drawn it to-scale, then this is the accurate depiction of its size, and the distance of planets from the Sun.",
         detail: ["The planets revolve around the Sun in an elliptical path, where Sun is at one of the focii of the ellipse.", "They are so far off in distance from the Sun, as compared to their size, that they cannot even be seen at this scale. Here, they are depicted with (equal size) circular outlines around them.", "An interesting thing to observe here is the distance of inner Rocky planets as compared to the outer ice/gas giants."],
-        instruction: ["Go ahead and click on the Explore button and explore this scale by scrolling to zoom and dragging to pan around.", "Once, you're done exploring, turn it back off and click the Next button below to see the more conventional model depicted in books."]
+        instruction: ["Go ahead and click on the Pan & Zoom toggle button and explore this scale by scrolling to zoom and dragging to pan around.", "Once, you're done exploring, turn it back off and click the Next button below to see the more conventional model depicted in books."]
     }
 };
 
@@ -147,7 +147,7 @@ equidistant.description = {
     title: "\"Print model\" of Solar System",
     intro: "To accomodate the Solar system in the print medium, publishers have to compromise accuracy for legibility.",
     detail: ["As shown here, in print medium planets are generally depicted to be rotating in circular orbits around the Sun at equal distance from each other.", "Even though planet's size maybe proportional to each other, the scaling is not proportional to Sun's size in the depiction."],
-    instruction: ["Go ahead and click on the Explore button and explore this scale by scrolling to zoom and dragging to pan around.", "Once, you're done exploring, turn it back off and click the Next button below to see to-scale model with respect to size."]
+    instruction: ["Go ahead and click on the Pan & Zoom toggle button and explore this scale by scrolling to zoom and dragging to pan around.", "Once, you're done exploring, turn it back off and click the Next button below to see to-scale model with respect to size."]
 };
 
 equidistant.config = calcEqConfig();
@@ -200,19 +200,19 @@ size.description = {
     title: "Size comparison",
     intro: "Here, the Sun and all the planets are scaled down proportionally and are placed horizontally aligned at equal distance from each other.",
     detail: [""],
-    instruction: ["Go ahead and click on the Explore button and explore this scale by scrolling to zoom and dragging to pan around.", "Once, you're done exploring, turn it back off and click the Next button below to see how the planets compare to life-size objects."]
+    instruction: ["Go ahead and click on the Pan & Zoom toggle button and explore this scale by scrolling to zoom and dragging to pan around.", "Once, you're done exploring, turn it back off and click the Next button below to see how the planets compare to life-size objects."]
 };
 var sizeSwap = {
     title: "Size Analogy",
     intro: "If the Sun was as \"tall\" as a 5 feet person, then each of the planets would be as big as:",
     detail: ["Mercury - Pearl","Venus - Ring","Earth - Marble","Mars - Rice grain","Jupiter - Cannon-ball","Saturn - Beach-hat","Uranus - Billiard-ball","Neptune - Snooker-ball","","PS: A billiard ball is slightly bigger than a snooker/pool ball"],
-    instruction: ["Go ahead and click on the Explore button and explore this scale by scrolling to zoom and dragging to pan around.", "Once, you're done exploring, turn it back off and click the Next button below to see this size analogy with respect a distance analogy."]
+    instruction: ["Go ahead and click on the Pan & Zoom toggle button and explore this scale by scrolling to zoom and dragging to pan around.", "Once, you're done exploring, turn it back off and click the Next button below to see this size analogy with respect a distance analogy."]
 };
 var mapSwap = {
     title: "Distance Analogy",
     intro: "From our previous analogy, consider the Sun (a 5 feet tall person) at the center of the Michigan Stadium. Then the planet Mercury would be a pearl revolving around it at distance of about 250 yards, at the periphery of the Michigan Stadium.",
     detail: ["Similarly, Venus at size of Ring, at about 400ft would be revolving around the stadium parking lot.", "Earth as a Marble, would be around the Crisler Basketball arena at 544 ft.", "Mars as small as a Rice grain, will be around the S. Main Street", "These finish our inner Rocky planets. The outer gas and ice giants are way off beyond half a mile from the stadium","","Jupiter as a cannon ball shows up passing over Eibel field.","Saturn at about a mile away just passing over Law Quad.", "Uranus twice as far would be around UMHS", "Lastly, Neptune at 3 miles would be passing over School of Music in North Campus."],
-    instruction: ["Go ahead and click on the Explore button and explore this scale by scrolling to zoom and dragging to pan around.", "Such is the power of Gravitation, a ball of diameter 5 feet can control a Snooker ball of 2 inches, 3 miles away. "]
+    instruction: ["Go ahead and click on the Pan & Zoom toggle button and explore this scale by scrolling to zoom and dragging to pan around.", "Such is the power of Gravitation, a ball of diameter 5 feet can control a Snooker ball of 2 inches, 3 miles away. "]
 };
 
 var mapData = [/*{

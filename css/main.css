@@ -38,14 +38,17 @@ body {
 
 .script {
     margin: 0.5rem 1rem;
+    margin-bottom: 5rem;
 }
 
 .info-ctrl {
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 1);
+    border-top: #323232 5px solid;
     bottom: 0;
     z-index: 3;
     width: 20rem;
+    padding-top: 5px;
 }
 
 .prev,
