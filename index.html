@@ -4,91 +4,52 @@
 <head>
     <meta charset=utf-8>
     <title>Solar System to Scale</title>
-    <style>
-    body {
-        margin: 0;
-        font-family: "Trebuchet MS";
-        overflow: hidden;
-    }
-    
-    .solr {
-        width: 100vw;
-        height: 100vh;
-    }
-    
-    div.tooltip {
-        position: absolute;
-        text-align: center;
-        padding: 5px;
-        font: 1.4rem monospace;
-        background: lightgray;
-        border: 0;
-        border-radius: 2px;
-        pointer-events: none;
-        cursor: default;
-    }
-    
-    .subtitles {
-        width: 100vw;
-        height: 4rem;
-        position: fixed;
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-    
-    footer {
-        width: 100vw;
-        height: 4rem;
-        position: fixed;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.4);
-        display: flex;
-        flex-direction: row;
-        color: white;
-    }
-    
-    .controls__slider {
-        color: white;
-    }
-    
-    .switch > div {
-        height: 1rem;
-        display: inline-block;
-    }
-
-    .range {
-        margin: 0 auto;
-    }
-    </style>
-    <link rel="stylesheet" href="switch.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/switch.css">
 </head>
 
 <body>
-    <div class="subtitles">
-    </div>
+    <aside class="info">
+        <div class="script" id="script"></div>
+        <form class="info-ctrl">
+            <div class="explore-btn">
+                <span>Explore</span>
+                <div>
+                    <input id="explore-toggle" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="explore-toggle"></label>
+                </div>
+            </div>
+            <input class="prev" type="button" value="< Prev" id="prev">
+            <input class="reset" type="button" value="Reset" id="reset">
+            <input class="next" type="button" value="Next >" id="next">
+        </form>
+    </aside>
     <div class="solr">
-        <svg id="solr" width="100%" height="100%" viewBox="0 0 2000 700" preserveAspectRatio="xMaxYMax"></svg>
+        <svg id="solr" width="100%" height="100%" preserveAspectRatio="xMaxYMax"></svg>
     </div>
-
-    <footer>
-        <!-- <div class="switch">
-            <span>Equidistant</span>
+    <aside class="control-panel">
+        <div class="switch">
+            <span>Explore</span>
             <div>
-                <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                <label for="cmn-toggle-1"></label>
+                <input id="explore-toggle" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                <label for="explore-toggle"></label>
             </div>
-        </div>-->
-        <!-- <div class="switch">
-            <span>Scale up</span>
-            <div>
-                <input id="cmn-toggle-2" class="cmn-toggle cmn-toggle-round" type="checkbox">
-                <label for="cmn-toggle-2"></label>
-            </div>
-        </div>  -->
+        </div>
         <input class="range" type="range" min="0" max="200" value="0" id="range">
-        
-    </footer>
-    <script src="d3.v3.js" type="text/javascript" charset="utf-8"></script>
-    <script src="solr.js" type="text/javascript" charset="utf-8"></script>
+        <div class="states">
+            <input type="button" value="1" id="toScale">
+            <input type="button" value="2" id="equidistant">
+            <input type="button" value="3" id="size">
+            <input type="button" value="4" id="swap">
+            <input type="button" value="5" id="map">
+        </div>
+    </aside>
+    <script src="js/d3.v3.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/data.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/states.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/init.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/solr.js" type="text/javascript" charset="utf-8"></script>
 </body>
 
 </html>
